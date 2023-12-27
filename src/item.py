@@ -33,14 +33,16 @@ class Item:
             self.__name = name
 
     @classmethod
-    def instantiate_from_csv(cls, file):
-        Item.all = []
-        with open(file, newline='') as csvfile:
+    def instantiate_from_csv(cls, file: str) -> None:
+        cls.all.clear()
+        with open(file, "r", encoding='windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
             for dict_item in reader:
-                #  print(f"{dict_item['name']}, {dict_item['price']}, {dict_item['quantity']}")
-                Item(dict_item['name'], float(dict_item['price']), int(dict_item['quantity']))
+                Item(dict_item['name'], float(dict_item['price']), Item.string_to_number(dict_item['quantity']))
 
+    @staticmethod
+    def string_to_number(str_in_file: str) -> int:
+        return int(float(str_in_file))
 
     def calculate_total_price(self) -> float:
         """
