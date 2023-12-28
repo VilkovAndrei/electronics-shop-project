@@ -24,3 +24,19 @@ def test__init__all():
     start_len = len(Item.all)
     Item("test", 1, 1)
     assert len(Item.all) == start_len + 1
+
+
+def test_name():
+    item2.name = "СуперСмартфон"
+    assert item2.name == "СуперСмарт"
+
+
+def test_instantiate_from_csv():
+    Item.instantiate_from_csv('../src/items.csv')
+    assert len(Item.all) == 5
+
+
+def test_string_to_number():
+    assert Item.string_to_number('101') == 101
+    assert Item.string_to_number('101.0') == 101
+    assert Item.string_to_number('101.5') == 101
