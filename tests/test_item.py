@@ -32,7 +32,7 @@ def test_name():
 
 
 def test_instantiate_from_csv():
-    Item.instantiate_from_csv('../src/items.csv')
+    Item.instantiate_from_csv('src/items.csv')
     assert len(Item.all) == 5
 
 
