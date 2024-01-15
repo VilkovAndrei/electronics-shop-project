@@ -46,3 +46,6 @@ def test__repr__():
 
 def test__str__():
     assert str(item1) == 'Смартфон'
+
+def test__add__():
+    assert item1 + item2 == 25
